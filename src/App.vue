@@ -12,6 +12,7 @@ import axios from "axios";
 export default {
   mounted() {
     console.log("おはよう");
+    console.log(this.item)
   },
   data(){
     
@@ -22,17 +23,22 @@ export default {
     }
   },
   methods:{
-    click(){
-      this.zip=this.address
+    async click(){
+      abc(){
+      const item = await axios.get(`https://apis.postcode-jp.com/api/v4/postcodes/${this.number}?apiKey=gpOFMas5ZqJ7LZACnlAnyk0igRdf2Jxlkku5tV6`);
+      console.log(item)
+      const locationData = item.data;
+      this.number =locationData.postcode;
+      this.address =locationData.allAddress;
+      }
+      console.log(item)
+      return this.zip=this.address
+      
       
     }
   },
   async created(){
-    const item = axios.get(`https://apis.postcode-jp.com/api/v4/postcodes/${this.number}?apikey=gpOFMas5ZqJ7LZACnlAnyk0igRdf2Jxlkku5tV6`)
-    const locationData = item.data;
-    this.number =locationData.postcode;
-    this.address =locationData.allAddress;
-    console.log("こんにちは")
+    
     
   },
   abc(){
