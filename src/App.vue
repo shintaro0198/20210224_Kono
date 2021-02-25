@@ -24,19 +24,17 @@ export default {
   },
   methods:{
     async click(){
-      const item = await axios.get(`https://apis.postcode-jp.com/api/v4/postcodes/${this.number}?apiKey=gpOFMas5ZqJ7LZACnlAnyk0igRdf2Jxlkku5tV6`);
+       await this.created();
+       return this.zip=this.address
+    }, 
+  },
+  async created(){const item = await axios.get(`https://apis.postcode-jp.com/api/v4/postcodes/${this.number}?apiKey=gpOFMas5ZqJ7LZACnlAnyk0igRdf2Jxlkku5tV6`);
       console.log(item)
       const locationData = item.data;
       this.number =locationData.postcode;
       locationData.allAddress=this.address;
-      console.log(locationData.postcode)
+      console.log(locationData)
       console.log(this.address)
-      return this.zip=this.address
-    }
-  },
-  async created(){
-    
-    
   },
   abc(){
     console.log("こんばんは")
