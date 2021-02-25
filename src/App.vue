@@ -23,10 +23,11 @@ export default {
     }
   },
   async created(){
-    const item = axios.get('https://apis.postcode-jp.com/api/v4/postcodes/${zipcode}/td58dzBMRtknZXBqWEARAJ3eVbf0kqTHHbTdBX9')
+    const item = axios.get(`https://apis.postcode-jp.com/api/v4/postcodes/${this.number}/td58dzBMRtknZXBqWEARAJ3eVbf0kqTHHbTdBX9`)
     const locationData = item.data;
     this.number =locationData.postcode;
     this.address =locationData.allAddress
+    console.log(item)
     
   }
 }
