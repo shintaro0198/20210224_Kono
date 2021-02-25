@@ -28,8 +28,9 @@ export default {
       console.log(item)
       const locationData = item.data;
       this.number =locationData.postcode;
-      this.address =locationData.allAddress;
-      console.log(item)
+      locationData.allAddress=this.address;
+      console.log(locationData.postcode)
+      console.log(this.address)
       return this.zip=this.address
     }
   },
