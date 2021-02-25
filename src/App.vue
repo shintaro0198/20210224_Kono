@@ -10,25 +10,33 @@
 <script>
 import axios from "axios";
 export default {
+  mounted() {
+    console.log("おはよう");
+  },
   data(){
+    
     return{
       address:"",
       zip:"",
-      number :""
+      number :"",
     }
   },
   methods:{
     click(){
       this.zip=this.address
+      
     }
   },
   async created(){
-    const item = axios.get(`https://apis.postcode-jp.com/api/v4/postcodes/${this.number}/td58dzBMRtknZXBqWEARAJ3eVbf0kqTHHbTdBX9`)
+    const item = axios.get(`https://apis.postcode-jp.com/api/v4/postcodes/${this.number}?apikey=gpOFMas5ZqJ7LZACnlAnyk0igRdf2Jxlkku5tV6`)
     const locationData = item.data;
     this.number =locationData.postcode;
-    this.address =locationData.allAddress
-    console.log(item)
+    this.address =locationData.allAddress;
+    console.log("こんにちは")
     
+  },
+  abc(){
+    console.log("こんばんは")
   }
 }
 </script>
