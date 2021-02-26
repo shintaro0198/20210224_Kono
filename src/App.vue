@@ -3,7 +3,6 @@
     <input type="text" v-model="number">
     <button @click="click">住所自動入力</button>
     <p>Address: {{zip}}</p>
-    <p>{{number}}</p>
   </div>
 </template>
 
@@ -25,19 +24,24 @@ export default {
   methods:{
     async click(){
        await this.created();
-       return this.zip=this.address
-    }, 
-  },
-  async created(){const item = await axios.get(`https://apis.postcode-jp.com/api/v4/postcodes/${this.number}?apiKey=gpOFMas5ZqJ7LZACnlAnyk0igRdf2Jxlkku5tV6`);
-      console.log(item)
-      const locationData = item.data;
+        this.abc()
+    },
+    async created(){const item = await axios.get(`https://apis.postcode-jp.com/api/v4/postcodes/${this.number}?apiKey=gpOFMas5ZqJ7LZACnlAnyk0igRdf2Jxlkku5tV6`);
+      console.log(item.data)
+      const locationData = item.data[0];
       this.number =locationData.postcode;
-      locationData.allAddress=this.address;
+      this.address=locationData.allAddress;
+      console.log(locationData.postcode)
       console.log(locationData)
-      console.log(this.address)
+      console.log(locationData.allAddress)
+      console.log(this.address) 
   },
-  abc(){
-    console.log("こんばんは")
+    abc(){
+    this.zip=this.address,
+      console.log(this.zip)
   }
+  
+  },
+  
 }
 </script>
